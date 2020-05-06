@@ -14,7 +14,7 @@ public class PlayerInputLayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FlapedThisFrame = Input.GetKeyUp(flapKey);
+        FlapedThisFrame = Input.GetKeyDown(flapKey);
         DivedThisFrame = Input.GetKeyDown(diveKey);
         IsDiving = Input.GetKey(diveKey);
     }
