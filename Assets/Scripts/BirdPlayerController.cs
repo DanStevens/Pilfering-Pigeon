@@ -12,12 +12,10 @@ public class BirdPlayerController : MonoBehaviour
     public string Greeting { get; set; } = "Hello";
 
     private Rigidbody2D rigidBody;
-    private PlayerInputLayer playerInput;
 
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        playerInput = GetComponent<PlayerInputLayer>();
     }
 
     // Called one per frame
@@ -30,7 +28,7 @@ public class BirdPlayerController : MonoBehaviour
     private bool FlapUp()
     {
         
-        if (playerInput.FlapedThisFrame) {
+        if (Input.GetButtonDown("Jump")) {
             rigidBody.velocity = Vector2.zero;
             rigidBody.AddForce(new Vector2(0, upForce));
             return true;
@@ -41,10 +39,10 @@ public class BirdPlayerController : MonoBehaviour
     private bool DiveDown()
     {
         
-        if (playerInput.DivedThisFrame)
+        if (Input.GetButtonDown("Dive"))
             rigidBody.velocity = Vector2.zero;
         
-        if (playerInput.IsDiving) {
+        if (Input.GetButton("Dive")) {
             rigidBody.drag = diveDrag;
             return true;
         } else {
