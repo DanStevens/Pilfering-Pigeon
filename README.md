@@ -9,3 +9,5 @@ A side scrolling 2D game featuring a flying pigeon stealing food from a farmer's
 Working WebGL play-testing builds availble for each day:
 
 [Day 1](https://danstevens.github.io/Pilfering-Pigeon/Day-001/)
+[Day 3](https://danstevens.github.io/Pilfering-Pigeon/Day-003/)
+[Day 4](https://danstevens.github.io/Pilfering-Pigeon/Day-004/)
