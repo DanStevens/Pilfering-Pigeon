@@ -5,6 +5,10 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
+
+/// <summary>
+/// Scrolls 2D objects horizontally
+/// </summary>
 public class ObjectScroller : MonoBehaviour
 {
     [SerializeField] Rigidbody2D[] objects = new Rigidbody2D[] { };
@@ -18,7 +22,10 @@ public class ObjectScroller : MonoBehaviour
         if (carouselObjects) {
             foreach (var o in objects) {
                 if (o.TryGetComponent(out BoxCollider2D collider)) {
-                    if (o.transform.position.x < -collider.size.x)
+                    bool speedIsNeg = o.velocity.x < 0;
+                    float xPos = o.transform.position.x;
+                    float xSize = collider.size.x;
+                    if (speedIsNeg && (xPos < -xSize) || (xPos > xSize))
                         RepositionBackground(o, collider.size.x);
                 }
             }
@@ -28,7 +35,7 @@ public class ObjectScroller : MonoBehaviour
     private static void RepositionBackground(Rigidbody2D o, float horizontalLength)
     {
         Vector2 groundOffset = new Vector2(horizontalLength * 2f, 0);
-        o.transform.position = (Vector2)o.transform.position + groundOffset;
+        o.transform.position = (Vector2)o.transform.position + (groundOffset * (o.velocity.x < 0 ? 1 : -1));
     }
 
     public void SetScrollSpeed(float speed)
