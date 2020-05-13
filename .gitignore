@@ -58,3 +58,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Custom
+/Assets/Third-Party/FreePixelFood
+/Assets/Third-Party/FreePixelFood.meta
+/Pilfering-Pigeon - Shortcut.lnk
