@@ -11,7 +11,7 @@ using UnityEngine;
 /// </summary>
 public class ObjectScroller : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D[] objects = new Rigidbody2D[] { };
+    [SerializeField] public Rigidbody2D[] objects = new Rigidbody2D[] { };
 
     [Tooltip("When true, objects are set back to their original position so that they can scroll indefinintely for a given area. " + 
         "Useful to infininate scrolling backgrounds ")]
