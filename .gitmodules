@@ -1,0 +1,3 @@
+[submodule "Assets/Third-Party/unity-object-pool"]
+	path = Assets/Third-Party/unity-object-pool
+	url = git@github.com:DanStevens/unity-object-pool.git
