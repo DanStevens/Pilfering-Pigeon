@@ -15,9 +15,6 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] ObjectScroller[] objectScrollers;
     [SerializeField] Text scoreText;
 
-    [SerializeField] GameObject collectablePrefab;
-    [SerializeField] Transform spawnPoint;
-
     public int score = 0;
 
     public float GlobalScollSpeed => globalScrollSpeed;
@@ -29,9 +26,6 @@ public class GameManager : Singleton<GameManager>
             Assert.IsNotNull(scroller);
             scroller.SetScrollSpeed(globalScrollSpeed);
         }
-
-        InvokeRepeating(nameof(SpawnCollectable), 0f, 1f);
-        //SpawnCollectable();
     }
 
     // Update is called once per frame
@@ -46,8 +40,5 @@ public class GameManager : Singleton<GameManager>
         scoreText.text = $"Score: {score}";
     }
 
-    void SpawnCollectable()
-    {
-        PoolManager.SpawnObject(collectablePrefab, spawnPoint.transform.position, collectablePrefab.transform.rotation);
-    }
+    
 }

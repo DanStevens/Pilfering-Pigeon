@@ -24,7 +24,9 @@ public class Collectable : MonoBehaviour
         if (collision.CompareTag("Player")) {
             GameManager.Instance.IncrementScore();
             PoolManager.ReleaseObject(gameObject);
-            //gameObject.SetActive(false);
+
+        } else if (collision.CompareTag("Despawn")) {
+            PoolManager.ReleaseObject(gameObject);
         }
     }
 
