@@ -27,6 +27,7 @@ public class CollectableManager : MonoBehaviour
 
     private void OnStartGame(object sender, StartGameEventArgs e)
     {
+        spawnRate = e.SpawnRate;
         PoolManager.WarmPool(collectablePrefab, initialPoolSize);
         //InvokeRepeating(nameof(SpawnCollectable), 0f, e.SpawnRate);
         spawner = StartCoroutine(nameof(SpawnCollectable));
@@ -40,7 +41,7 @@ public class CollectableManager : MonoBehaviour
 
     IEnumerator SpawnCollectable()
     {
-        for (; ; ) {
+        for (;;) {
             if (GameManager.IsGameActive) {
                 PoolManager.SpawnObject(collectablePrefab, GetRandomPosition(),
                     collectablePrefab.transform.rotation);
