@@ -21,8 +21,13 @@ public class BirdPlayerController : MonoBehaviour
     // Called one per frame
     private void Update()
     {
-        // Prevent the bird from diving and flapping up in the same frame
-        var _ = DiveDown() || FlapUp();
+        if (GameManager.IsGameActive) {
+            rigidBody.simulated = true;
+            // Prevent the bird from diving and flapping up in the same frame
+            var _ = DiveDown() || FlapUp();
+        } else {
+            rigidBody.simulated = false;
+        }
     }
 
     private bool FlapUp()

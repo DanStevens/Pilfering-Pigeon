@@ -8,16 +8,38 @@ using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
-    
+
     [Tooltip("The speed at which the ground scrolls. Negative values scroll to the left; positive to the right")]
     [SerializeField] float globalScrollSpeed = -2f;
 
-    [SerializeField] ObjectScroller[] objectScrollers;
-    [SerializeField] Text scoreText;
+    [SerializeField] ObjectScroller[] objectScrollers = { };
+    [SerializeField] Text scoreText = null;
 
-    public int score = 0;
+    int score = 0;
+    bool isGameActive = false;
 
-    public float GlobalScollSpeed => globalScrollSpeed;
+    public static bool IsGameActive => Instance.isGameActive;
+
+    public static float GlobalScollSpeed
+    {
+        get => Instance.globalScrollSpeed;
+        set => Instance.globalScrollSpeed = value;
+    }
+
+    public static event EventHandler<StartGameEventArgs> OnStartGame;
+    public static event EventHandler OnStopGame;
+
+    public static void StartGame(float spawnRate)
+    {
+        Instance.isGameActive = true;
+        OnStartGame?.Invoke(Instance, new StartGameEventArgs(spawnRate));
+    }
+
+    public static void StopGame()
+    {
+        Instance.isGameActive = false;
+        OnStopGame?.Invoke(Instance, EventArgs.Empty);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -31,14 +53,22 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.anyKeyDown)
+            StartGame(1f);
     }
 
-    public void IncrementScore()
+    public static void IncrementScore()
     {
-        score++;
-        scoreText.text = $"Score: {score}";
+        Instance.score++;
+        Instance.scoreText.text = $"Score: {Instance.score}";
     }
 
-    
+}
+
+public class StartGameEventArgs : EventArgs
+{
+    public StartGameEventArgs(float spawnRate)
+        => SpawnRate = spawnRate;
+
+    public float SpawnRate { get; set; }
 }

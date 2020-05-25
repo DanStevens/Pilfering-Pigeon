@@ -16,13 +16,13 @@ public class Collectable : MonoBehaviour
 
     private void OnEnable()
     {
-        scroller.SetScrollSpeed(GameManager.Instance.GlobalScollSpeed);
+        scroller.SetScrollSpeed(GameManager.GlobalScollSpeed);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) {
-            GameManager.Instance.IncrementScore();
+            GameManager.IncrementScore();
             PoolManager.ReleaseObject(gameObject);
 
         } else if (collision.CompareTag("Despawn")) {
