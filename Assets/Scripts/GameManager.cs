@@ -53,8 +53,8 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
-            StartGame(1f);
+        //if (Input.anyKeyDown)
+        //    StartGame(1f);
     }
 
     public static void IncrementScore()
