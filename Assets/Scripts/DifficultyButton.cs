@@ -7,7 +7,10 @@ public class DifficultyButton : MonoBehaviour
 {
     private Button button;
 
-    [SerializeField] float spawnRate = 1f;
+    [Range(0.01f, 60f)]
+    [SerializeField] float minspawnInterval = 1f;
+    [Range(0.01f, 60f)]
+    [SerializeField] float maxSpawnInterval = 2f;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,6 +21,6 @@ public class DifficultyButton : MonoBehaviour
 
     void SetDifficulty()
     {
-        GameManager.StartGame(spawnRate);
+        GameManager.StartGame(minspawnInterval, maxSpawnInterval);
     }
 }

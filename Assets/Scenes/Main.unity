@@ -797,12 +797,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a92b09b72639d43acf5eda83d7ec8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 1
   collectablePrefab: {fileID: 2333398703259049965, guid: ee308cc69268f7d45aed20fdb8a00025,
     type: 3}
   spawnPoint: {fileID: 1826328204}
   offset: 3
-  initialPoolSize: 4
+  poolSizeFactor: 6
 --- !u!4 &1244831761
 Transform:
   m_ObjectHideFlags: 0
@@ -890,6 +889,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1610417028}
     m_Modifications:
+    - target: {fileID: 2993723659382777338, guid: f011dc18f94270149a1c2d4803e8a895,
+        type: 3}
+      propertyPath: minspawnInterval
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993723659382777338, guid: f011dc18f94270149a1c2d4803e8a895,
+        type: 3}
+      propertyPath: maxSpawnInterval
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2993723659601978116, guid: f011dc18f94270149a1c2d4803e8a895,
         type: 3}
       propertyPath: m_Name
@@ -999,6 +1008,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993723659749617191, guid: f011dc18f94270149a1c2d4803e8a895,
+        type: 3}
+      propertyPath: minspawnInterval
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993723659749617191, guid: f011dc18f94270149a1c2d4803e8a895,
+        type: 3}
+      propertyPath: maxSpawnInterval
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993723660794353118, guid: f011dc18f94270149a1c2d4803e8a895,
+        type: 3}
+      propertyPath: minspawnInterval
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f011dc18f94270149a1c2d4803e8a895, type: 3}

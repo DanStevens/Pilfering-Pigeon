@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -29,10 +30,10 @@ public class GameManager : Singleton<GameManager>
     public static event EventHandler<StartGameEventArgs> OnStartGame;
     public static event EventHandler OnStopGame;
 
-    public static void StartGame(float spawnRate)
+    public static void StartGame(float minSpawnInterval, float maxSpawnInterval)
     {
         Instance.isGameActive = true;
-        OnStartGame?.Invoke(Instance, new StartGameEventArgs(spawnRate));
+        OnStartGame?.Invoke(Instance, new StartGameEventArgs(minSpawnInterval, maxSpawnInterval));
     }
 
     public static void StopGame()
@@ -67,8 +68,12 @@ public class GameManager : Singleton<GameManager>
 
 public class StartGameEventArgs : EventArgs
 {
-    public StartGameEventArgs(float spawnRate)
-        => SpawnRate = spawnRate;
+    public StartGameEventArgs(float minSpawnInterval, float maxSpawnInterval)
+    {
+        MinSpawnInterval = minSpawnInterval;
+        MaxSpawnInterval = maxSpawnInterval;
+    }
 
-    public float SpawnRate { get; set; }
+    public float MinSpawnInterval { get; set; }
+    public float MaxSpawnInterval { get; set; }
 }

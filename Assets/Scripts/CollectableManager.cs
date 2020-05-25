@@ -5,11 +5,11 @@ using ObjectPooling;
 
 public class CollectableManager : MonoBehaviour
 {
-    [SerializeField] float spawnRate = 1f;
+    [SerializeField] StartGameEventArgs gameArgs = null;
     [SerializeField] GameObject collectablePrefab;
     [SerializeField] Transform spawnPoint;
     [SerializeField] float offset = 3.5f;
-    [SerializeField] int initialPoolSize = 4;
+    [SerializeField] int poolSizeFactor = 6;
 
     private Coroutine spawner = null;
 
@@ -27,10 +27,15 @@ public class CollectableManager : MonoBehaviour
 
     private void OnStartGame(object sender, StartGameEventArgs e)
     {
-        spawnRate = e.SpawnRate;
-        PoolManager.WarmPool(collectablePrefab, initialPoolSize);
+        gameArgs = e;
+        PoolManager.WarmPool(collectablePrefab, CalculatePoolSize(e.MinSpawnInterval));
         //InvokeRepeating(nameof(SpawnCollectable), 0f, e.SpawnRate);
         spawner = StartCoroutine(nameof(SpawnCollectable));
+    }
+
+    private int CalculatePoolSize(float interval)
+    {
+        return (int)System.Math.Ceiling(poolSizeFactor / interval);
     }
 
     // Start is called before the first frame update
@@ -46,9 +51,14 @@ public class CollectableManager : MonoBehaviour
                 PoolManager.SpawnObject(collectablePrefab, GetRandomPosition(),
                     collectablePrefab.transform.rotation);
             }
-            yield return new WaitForSeconds(spawnRate);
+            yield return new WaitForSeconds(GetRandomSpawnInterval());
         }
 
+    }
+
+    private float GetRandomSpawnInterval()
+    {
+        return Random.Range(gameArgs.MinSpawnInterval, gameArgs.MaxSpawnInterval);
     }
 
     private Vector3 GetRandomPosition()
