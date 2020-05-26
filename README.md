@@ -13,6 +13,7 @@ Working WebGL play-testing builds availble for each day:
 [Day 4](https://danstevens.github.io/Pilfering-Pigeon/Day-004/)
 [Day 5](https://danstevens.github.io/Pilfering-Pigeon/Day-005/)
 [Day 9](https://danstevens.github.io/Pilfering-Pigeon/Day-009/)
+[Day 12](https://danstevens.github.io/Pilfering-Pigeon/Day-012/)
 
 # Attributions
 
