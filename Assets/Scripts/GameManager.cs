@@ -17,9 +17,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] Text scoreText = null;
 
     int score = 0;
-    bool isGameActive = false;
+    GameState gameState = GameState.Title;
 
-    public static bool IsGameActive => Instance.isGameActive;
+    public static bool IsGameActive => GameState == GameState.Running;
+    public static GameState GameState => Instance.gameState;
 
     public static float GlobalScollSpeed
     {
@@ -28,18 +29,39 @@ public class GameManager : Singleton<GameManager>
     }
 
     public static event EventHandler<StartGameEventArgs> OnStartGame;
-    public static event EventHandler OnStopGame;
+    public static event EventHandler GameStateChanged;
 
     public static void StartGame(float minSpawnInterval, float maxSpawnInterval)
     {
-        Instance.isGameActive = true;
+        Instance.gameState = GameState.Running;
         OnStartGame?.Invoke(Instance, new StartGameEventArgs(minSpawnInterval, maxSpawnInterval));
+        GameStateChanged?.Invoke(Instance, EventArgs.Empty);
     }
 
-    public static void StopGame()
+    public static void GameOver()
     {
-        Instance.isGameActive = false;
-        OnStopGame?.Invoke(Instance, EventArgs.Empty);
+        Instance.gameState = GameState.GameOver;
+        GameStateChanged?.Invoke(Instance, EventArgs.Empty);
+    }
+
+    public static void RestartGame()
+    {
+        Instance.score = 0;
+        Instance.scoreText.text = $"Score: {Instance.score}";
+        Instance.gameState = GameState.Title;
+        GameStateChanged?.Invoke(Instance, EventArgs.Empty);
+    }
+
+    public static void PauseGame()
+    {
+        Instance.gameState = GameState.Paused;
+        GameStateChanged?.Invoke(Instance, EventArgs.Empty);
+    }
+
+    public static void IncrementScore()
+    {
+        Instance.score++;
+        Instance.scoreText.text = $"Score: {Instance.score}";
     }
 
     // Start is called before the first frame update
@@ -54,14 +76,8 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        //if (Input.anyKeyDown)
-        //    StartGame(1f);
-    }
-
-    public static void IncrementScore()
-    {
-        Instance.score++;
-        Instance.scoreText.text = $"Score: {Instance.score}";
+        if (Instance.gameState == GameState.GameOver && Input.GetKey(KeyCode.Mouse0))
+            RestartGame();
     }
 
 }
@@ -76,4 +92,9 @@ public class StartGameEventArgs : EventArgs
 
     public float MinSpawnInterval { get; set; }
     public float MaxSpawnInterval { get; set; }
+}
+
+public enum GameState
+{
+    Title, Running, Paused, GameOver
 }

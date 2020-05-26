@@ -16,13 +16,19 @@ public class CollectableManager : MonoBehaviour
     private void Awake()
     {
         GameManager.OnStartGame += OnStartGame;
-        GameManager.OnStopGame += OnStopGame;
+        GameManager.GameStateChanged += GameStateChanged;
     }
 
-    private void OnStopGame(object sender, System.EventArgs e)
+    private void GameStateChanged(object sender, System.EventArgs e)
     {
-        if (spawner != null)
+        if (spawner != null && GameManager.GameState != GameState.Running)
             StopCoroutine(spawner);
+
+        if (GameManager.GameState == GameState.Title) {
+            foreach (var collectable in GameObject.FindGameObjectsWithTag("Collectable")) {
+                PoolManager.ReleaseObject(collectable);
+            }
+        }
     }
 
     private void OnStartGame(object sender, StartGameEventArgs e)

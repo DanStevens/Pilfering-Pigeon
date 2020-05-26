@@ -22,11 +22,12 @@ public class Collectable : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) {
-            GameManager.IncrementScore();
             PoolManager.ReleaseObject(gameObject);
+            GameManager.IncrementScore();
 
         } else if (collision.CompareTag("Despawn")) {
             PoolManager.ReleaseObject(gameObject);
+            GameManager.GameOver();
         }
     }
 

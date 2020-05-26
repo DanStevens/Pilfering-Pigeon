@@ -1,31 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
     [SerializeField] GameObject title = null;
+    [SerializeField] GameObject gameOver = null;
+    [SerializeField] GameObject paused = null;
 
     private void Awake()
     {
-        GameManager.OnStartGame += OnStartGame;
-        //GameManager.OnStopGame += OnStopGame;
+        GameManager.GameStateChanged += GameStateChanged;
     }
 
-    private void OnStartGame(object sender, StartGameEventArgs e)
+    private void GameStateChanged(object sender, EventArgs e)
     {
         if (title != null)
-            title.SetActive(false);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+            title.SetActive(GameManager.GameState == GameState.Title);
+        if (gameOver != null)
+            gameOver.SetActive(GameManager.GameState == GameState.GameOver);
+        if (paused != null)
+            paused.SetActive(GameManager.GameState == GameState.Paused);
     }
 }
