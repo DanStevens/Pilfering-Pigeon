@@ -31,10 +31,10 @@ public class GameManager : Singleton<GameManager>
     public static event EventHandler<StartGameEventArgs> OnStartGame;
     public static event EventHandler GameStateChanged;
 
-    public static void StartGame(float minSpawnInterval, float maxSpawnInterval)
+    public static void StartGame(DifficultyParameters difficultyParameters)
     {
         Instance.gameState = GameState.Running;
-        OnStartGame?.Invoke(Instance, new StartGameEventArgs(minSpawnInterval, maxSpawnInterval));
+        OnStartGame?.Invoke(Instance, new StartGameEventArgs(difficultyParameters));
         GameStateChanged?.Invoke(Instance, EventArgs.Empty);
     }
 
@@ -84,14 +84,12 @@ public class GameManager : Singleton<GameManager>
 
 public class StartGameEventArgs : EventArgs
 {
-    public StartGameEventArgs(float minSpawnInterval, float maxSpawnInterval)
+    public StartGameEventArgs(DifficultyParameters difficultyParameters)
     {
-        MinSpawnInterval = minSpawnInterval;
-        MaxSpawnInterval = maxSpawnInterval;
+        DifficultyParameters = difficultyParameters;
     }
 
-    public float MinSpawnInterval { get; set; }
-    public float MaxSpawnInterval { get; set; }
+    public DifficultyParameters DifficultyParameters { get; set; }
 }
 
 public enum GameState

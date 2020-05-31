@@ -34,7 +34,7 @@ public class CollectableManager : MonoBehaviour
     private void OnStartGame(object sender, StartGameEventArgs e)
     {
         gameArgs = e;
-        PoolManager.WarmPool(collectablePrefab, CalculatePoolSize(e.MinSpawnInterval));
+        PoolManager.WarmPool(collectablePrefab, CalculatePoolSize(e.DifficultyParameters.MinSpawnInterval));
         //InvokeRepeating(nameof(SpawnCollectable), 0f, e.SpawnRate);
         spawner = StartCoroutine(nameof(SpawnCollectable));
     }
@@ -64,7 +64,7 @@ public class CollectableManager : MonoBehaviour
 
     private float GetRandomSpawnInterval()
     {
-        return Random.Range(gameArgs.MinSpawnInterval, gameArgs.MaxSpawnInterval);
+        return Random.Range(gameArgs.DifficultyParameters.MinSpawnInterval, gameArgs.DifficultyParameters.MaxSpawnInterval);
     }
 
     private Vector3 GetRandomPosition()

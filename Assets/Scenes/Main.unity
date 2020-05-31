@@ -309,7 +309,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Day 12
+  m_Text: Day 13
 --- !u!222 &198072353
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1986,6 +1986,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1116235550558549033, guid: 404cb3f5ba04a184387862e24ca66dec,
+        type: 3}
+      propertyPath: flightParameters
+      value: 
+      objectReference: {fileID: 11400000, guid: 95bd9fddda84b4749ad231d5bb465833,
+        type: 2}
     - target: {fileID: 1116235551084162088, guid: 404cb3f5ba04a184387862e24ca66dec,
         type: 3}
       propertyPath: m_LocalPosition.x

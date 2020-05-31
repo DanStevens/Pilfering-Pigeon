@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class BirdPlayerController : MonoBehaviour
 {
-    [Header("Flight parameters")]
-    [SerializeField, Range(0, 100f)] float idleDrag = 10f;
-    [SerializeField, Range(0, 100f)] float diveDrag = 0f;
-    [SerializeField, Range(100, 1000f)] float upForce = 400f;
-
-    public string Greeting { get; set; } = "Hello";
+    [SerializeField] FlightParameters flightParameters;
 
     private Rigidbody2D rigidBody;
 
@@ -35,7 +30,7 @@ public class BirdPlayerController : MonoBehaviour
         
         if (Input.GetButtonDown("Jump")) {
             rigidBody.velocity = Vector2.zero;
-            rigidBody.AddForce(new Vector2(0, upForce));
+            rigidBody.AddForce(new Vector2(0, flightParameters.UpForce));
             return true;
         }
         return false;
@@ -48,10 +43,10 @@ public class BirdPlayerController : MonoBehaviour
             rigidBody.velocity = Vector2.zero;
         
         if (Input.GetButton("Dive")) {
-            rigidBody.drag = diveDrag;
+            rigidBody.drag = flightParameters.DiveDrag;
             return true;
         } else {
-            rigidBody.drag = idleDrag;
+            rigidBody.drag = flightParameters.IdleDrag;
             return false;
         }
     }

@@ -132,7 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fa91106ff35124ea061b3368ee3297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 1
+  difficultyParameters: {fileID: 11400000, guid: 81cb3c6f40b7d934fafd07b43108ca57,
+    type: 2}
 --- !u!1 &2993723659601978116
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,7 +304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fa91106ff35124ea061b3368ee3297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 0.8
+  difficultyParameters: {fileID: 11400000, guid: bec5c38e1fe239e4aaa072babcde180a,
+    type: 2}
 --- !u!1 &2993723660619051410
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,7 +594,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fa91106ff35124ea061b3368ee3297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 2
+  difficultyParameters: {fileID: 11400000, guid: dfe9c5105cadf4e45af30828070c331e,
+    type: 2}
 --- !u!1 &2993723661304348820
 GameObject:
   m_ObjectHideFlags: 0
