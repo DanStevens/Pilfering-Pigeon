@@ -4,32 +4,37 @@ using UnityEngine;
 using ObjectPooling;
 using UnityEngine.UIElements;
 
-public class Collectable : MonoBehaviour
+namespace PilferingPigeon
 {
-    private ObjectScroller scroller;
 
-    private void Awake()
+    public class Collectable : MonoBehaviour
     {
-        scroller = gameObject.AddComponent<ObjectScroller>();
-        scroller.objects = new[] { GetComponent<Rigidbody2D>() };
-    }
+        private ObjectScroller scroller;
 
-    private void OnEnable()
-    {
-        scroller.SetScrollSpeed(GameManager.GlobalScollSpeed);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player")) {
-            PoolManager.ReleaseObject(gameObject);
-            GameManager.IncrementScore();
-
-        } else if (collision.CompareTag("Despawn")) {
-            PoolManager.ReleaseObject(gameObject);
-            GameManager.GameOver();
+        private void Awake()
+        {
+            scroller = gameObject.AddComponent<ObjectScroller>();
+            scroller.objects = new[] { GetComponent<Rigidbody2D>() };
         }
+
+        private void OnEnable()
+        {
+            scroller.SetScrollSpeed(GameManager.GlobalScollSpeed);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player")) {
+                PoolManager.ReleaseObject(gameObject);
+                GameManager.IncrementScore();
+
+            } else if (collision.CompareTag("Despawn")) {
+                PoolManager.ReleaseObject(gameObject);
+                GameManager.GameOver();
+            }
+        }
+
+
     }
 
-    
 }

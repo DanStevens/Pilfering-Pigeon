@@ -2,52 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BirdPlayerController : MonoBehaviour
+namespace PilferingPigeon
 {
-    [SerializeField] FlightParameters flightParameters;
 
-    private Rigidbody2D rigidBody;
-
-    private void Start()
+    public class BirdPlayerController : MonoBehaviour
     {
-        rigidBody = GetComponent<Rigidbody2D>();
-    }
+        [SerializeField] FlightParameters flightParameters;
 
-    // Called one per frame
-    private void Update()
-    {
-        if (GameManager.IsGameActive) {
-            rigidBody.simulated = true;
-            // Prevent the bird from diving and flapping up in the same frame
-            var _ = DiveDown() || FlapUp();
-        } else {
-            rigidBody.simulated = false;
+        private Rigidbody2D rigidBody;
+
+        private void Start()
+        {
+            rigidBody = GetComponent<Rigidbody2D>();
         }
-    }
 
-    private bool FlapUp()
-    {
-        
-        if (Input.GetButtonDown("Jump")) {
-            rigidBody.velocity = Vector2.zero;
-            rigidBody.AddForce(new Vector2(0, flightParameters.UpForce));
-            return true;
+        // Called one per frame
+        private void Update()
+        {
+            if (GameManager.IsGameActive) {
+                rigidBody.simulated = true;
+                // Prevent the bird from diving and flapping up in the same frame
+                var _ = DiveDown() || FlapUp();
+            } else {
+                rigidBody.simulated = false;
+            }
         }
-        return false;
-    }
 
-    private bool DiveDown()
-    {
-        
-        if (Input.GetButtonDown("Dive"))
-            rigidBody.velocity = Vector2.zero;
-        
-        if (Input.GetButton("Dive")) {
-            rigidBody.drag = flightParameters.DiveDrag;
-            return true;
-        } else {
-            rigidBody.drag = flightParameters.IdleDrag;
+        private bool FlapUp()
+        {
+
+            if (Input.GetButtonDown("Jump")) {
+                rigidBody.velocity = Vector2.zero;
+                rigidBody.AddForce(new Vector2(0, flightParameters.UpForce));
+                return true;
+            }
             return false;
         }
+
+        private bool DiveDown()
+        {
+
+            if (Input.GetButtonDown("Dive"))
+                rigidBody.velocity = Vector2.zero;
+
+            if (Input.GetButton("Dive")) {
+                rigidBody.drag = flightParameters.DiveDrag;
+                return true;
+            } else {
+                rigidBody.drag = flightParameters.IdleDrag;
+                return false;
+            }
+        }
     }
+
 }

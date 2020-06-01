@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class DifficultyParameters : ScriptableObject
+namespace PilferingPigeon
 {
-    [Range(0.01f, 60f)]
-    [SerializeField] float minSpawnInterval = 1f;
-    [Range(0.01f, 60f)]
-    [SerializeField] float maxSpawnInterval = 2f;
 
-    public float MinSpawnInterval => minSpawnInterval;
-    public float MaxSpawnInterval => maxSpawnInterval;
+    [CreateAssetMenu]
+    public class DifficultyParameters : ScriptableObject
+    {
+        [Range(0.01f, 60f)]
+        [SerializeField] float minSpawnInterval = 1f;
+        [Range(0.01f, 60f)]
+        [SerializeField] float maxSpawnInterval = 2f;
+
+        public float MinSpawnInterval => minSpawnInterval;
+        public float MaxSpawnInterval => maxSpawnInterval;
+    }
+
 }
