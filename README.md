@@ -1,19 +1,10 @@
 # Pilfering-Pigeon
 
-A side scrolling 2D game featuring a flying pigeon stealing food from a farmer's field. Created in Unity as a through their [Create with Code Live](https://learn.unity.com/course/create-with-code-live) course.
+A 'flappy-bird' like side scrolling 2D game featuring a flying pigeon stealing food. Created in Unity through their [Create with Code Live](https://learn.unity.com/course/create-with-code-live) course.
 
 [Project Design](https://docs.google.com/document/d/1OlujN7ZluRCXwoSqdjhOTOAiQAG_WGnajCe9o5YlFq8/edit?usp=sharing)
 
-# WebGL builds
-
-Working WebGL play-testing builds availble for each day:
-
-[Day 1](https://danstevens.github.io/Pilfering-Pigeon/Day-001/)
-[Day 3](https://danstevens.github.io/Pilfering-Pigeon/Day-003/)
-[Day 4](https://danstevens.github.io/Pilfering-Pigeon/Day-004/)
-[Day 5](https://danstevens.github.io/Pilfering-Pigeon/Day-005/)
-[Day 9](https://danstevens.github.io/Pilfering-Pigeon/Day-009/)
-[Day 12](https://danstevens.github.io/Pilfering-Pigeon/Day-012/)
+[WebGL demo](https://danstevens.github.io/Pilfering-Pigeon)
 
 # Attributions
 
