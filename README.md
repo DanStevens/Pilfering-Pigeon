@@ -1,6 +1,6 @@
 # Pilfering-Pigeon
 
-A side scrolling 2D game featuring a flying pigeon stealing food from a farmer's field. Created in Unity as a [100DaysOfCoding](https://www.100daysofcode.com/) challenge.
+A side scrolling 2D game featuring a flying pigeon stealing food from a farmer's field. Created in Unity as a through their [Create with Code Live](https://learn.unity.com/course/create-with-code-live) course.
 
 [Project Design](https://docs.google.com/document/d/1OlujN7ZluRCXwoSqdjhOTOAiQAG_WGnajCe9o5YlFq8/edit?usp=sharing)
 
